@@ -1,14 +1,18 @@
 import pool from "../db.js";
 
+//Buscar usuarios
 export const getUsers = async (req, res) => {
   try {
-    const { rows } = await pool.query(`SELECT * FROM users`);
-    res.json(rows);
+    const result = await pool.query('SELECT * FROM users');
+    res.json(result.rows);
+
   } catch (error) {
     console.error(error);
+    res.status(500).json({ error: 'Error al obtener usuarios' });
   }
 };
 
+//Buscar usuario por ID
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -43,6 +47,7 @@ export const getUserByCedula = async (req, res) => {
   }
 };
 
+//Crear usuario
 export const createUser = async (req, res) => {
   try {
     const {
@@ -110,6 +115,7 @@ export const createUser = async (req, res) => {
   }
 };
 
+//Borrar usuario
 export const deleteUser = async (req, res) => {
   try {
     const { cedula } = req.params;

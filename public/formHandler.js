@@ -140,7 +140,10 @@ async function guardarUser() {
   }
 }
 
-function descargarPersonas() {
+async function descargarPersonas() {
+  const personasFetch = await fetch("http://localhost:4000/users");
+  const personas = await personasFetch.json()
+  personas.sort((a, b) => a.cedula - b.cedula)
   const dataStr = JSON.stringify(personas, null, 2);
   const blob = new Blob([dataStr], { type: "application/json" });
   const url = URL.createObjectURL(blob);
