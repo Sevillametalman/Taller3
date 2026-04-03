@@ -3,37 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catedral del Milagro</title>
+    <title>Inventario de Unidades</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="wrapper">
       <header>
-        <h1>Catedral del Milagro</h1>
+        <h1>LOGIS-LOGISTICA: OPTIMIZACIÓN DE COHORTES</h1>
       </header>
 
       <nav>
         <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="tabla.html">Tabla de Usuarios</a></li>
-          <li><a href="form.html">Crear Usuario</a></li>
-          <li><a href="#" onclick="logOut()">Cerrar sesion</a></li>
+          <li><a href="index.html">Protocolos Iniciales</a></li>
+          <li><a href="tabla.html">Inventario de Unidades</a></li>
+          <li><a href="form.html">Asignación de Doctrina</a></li>
+          <li><a href="#" onclick="logOut()">Terminar Enlace Neural</a></li>
         </ul>
       </nav>
 
       <div id="main-container">
         <section id="content">
-          <h2>Tabla de Usuarios</h2>
-          <table id="main-table">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Cedula</th>
-                <th>Edad</th>
-              </tr>
-            </thead>
-          </table>
+          <h2>Tabla de Recursos</h2>
+          <div style="overflow-x:auto;">
+            <table id="main-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Cédula</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Edad</th>
+                  <th>Género</th>
+                  <th>Teléfono 1</th>
+                  <th>Teléfono 2</th>
+                  <th>Correo 1</th>
+                  <th>Correo 2</th>
+                  <th>Estado Civil</th>
+                  <th>Dirección</th>
+                  <th>Departamento</th>
+                  <th>Cargo</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </section>
 
         <aside id="sidebar">
@@ -43,7 +55,10 @@
             id="buscarCedula"
             placeholder="Buscar por cédula"
           />
-          <button onclick="consultarPorCedula()" class="consultarButton">Consultar</button>
+          <button onclick="consultarPorCedula()" class="consultarButton">
+            Consultar
+          </button>
+        </aside>
       </div>
 
       <footer>

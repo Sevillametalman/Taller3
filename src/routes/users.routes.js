@@ -5,6 +5,8 @@ import {
   getUserByCedula,
   createUser,
   deleteUser,
+  updateUser,
+  deleteAllUsers,
 } from "../controllers/users.controllers.js";
 
 const router = Router();
@@ -17,10 +19,11 @@ router.get("/users/cedula/:cedula", getUserByCedula);
 
 router.post("/users", createUser);
 
+// Borrar todos los usuarios
+router.delete("/users", deleteAllUsers);
+
 router.delete("/users/:cedula", deleteUser);
 
-router.put("/users/:cedula", (req, res) => {
-  const { id } = req.params;
-  res.send("Obteniendo Users");
-});
+router.put("/users/:cedula", updateUser);
+
 export default router;

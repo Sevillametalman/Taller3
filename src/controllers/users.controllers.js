@@ -3,12 +3,11 @@ import pool from "../db.js";
 //Buscar usuarios
 export const getUsers = async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM users');
+    const result = await pool.query("SELECT * FROM users");
     res.json(result.rows);
-
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al obtener usuarios' });
+    res.status(500).json({ error: "Error al obtener usuarios" });
   }
 };
 
@@ -60,7 +59,7 @@ export const createUser = async (req, res) => {
       telefono2,
       correo1,
       correo2,
-      estadoCivil,
+      estadocivil,
       direccion,
       departamento,
       cargo,
@@ -74,7 +73,7 @@ export const createUser = async (req, res) => {
       !genero ||
       !telefono1 ||
       !correo1 ||
-      !estadoCivil ||
+      !estadocivil ||
       !direccion
     ) {
       return res.status(400).json({ error: "Faltan campos obligatorios" });
@@ -98,7 +97,7 @@ export const createUser = async (req, res) => {
         telefono2,
         correo1,
         correo2,
-        estadoCivil,
+        estadocivil,
         direccion,
         departamento,
         cargo,
@@ -125,5 +124,66 @@ export const deleteUser = async (req, res) => {
     res.json(result.rows[0]);
   } catch (error) {
     console.error(error);
+  }
+};
+
+// Borrar todos los usuarios
+export const deleteAllUsers = async (req, res) => {
+  try {
+    await pool.query("DELETE FROM users");
+    res.json({ message: "Todos los usuarios han sido eliminados" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al borrar todos los usuarios" });
+  }
+};
+
+//Actualizar usuario
+export const updateUser = async (req, res) => {
+  try {
+    const { cedula } = req.params;
+    const {
+      nombre,
+      apellido,
+      edad,
+      genero,
+      telefono1,
+      telefono2,
+      correo1,
+      correo2,
+      estadoCivil,
+      direccion,
+      departamento,
+      cargo,
+    } = req.body;
+
+    const result = await pool.query(
+      `UPDATE users SET 
+        nombre = $1, apellido = $2, edad = $3, genero = $4, telefono1 = $5, telefono2 = $6, correo1 = $7, correo2 = $8, estadoCivil = $9, direccion = $10, departamento = $11, cargo = $12
+        WHERE cedula = $13 RETURNING *`,
+      [
+        nombre,
+        apellido,
+        edad,
+        genero,
+        telefono1,
+        telefono2,
+        correo1,
+        correo2,
+        estadoCivil,
+        direccion,
+        departamento,
+        cargo,
+        cedula
+      ],
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Persona no encontrada" });
+    }
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al actualizar usuario" });
   }
 };

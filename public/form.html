@@ -4,31 +4,41 @@
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8" />
-    <title>Taller 2 - JSON</title>
+    <title>Asignación de Doctrina</title>
   </head>
   <body>
     <div id="wrapper">
       <header>
-        <h1>Catedral del Milagro</h1>
+        <h1>LOGIS-LOGISTICA: OPTIMIZACIÓN DE COHORTES</h1>
       </header>
 
       <nav>
         <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="tabla.html">Tabla de Usuarios</a></li>
-          <li><a href="form.html">Crear Usuario</a></li>
-          <li><a href="#" onclick="logOut()">Cerrar sesion</a></li>
+          <li><a href="index.html">Protocolos Iniciales</a></li>
+          <li><a href="tabla.html">Inventario de Unidades</a></li>
+          <li><a href="form.html">Asignación de Doctrina</a></li>
+          <li><a href="#" onclick="logOut()">Terminar Enlace Neural</a></li>
         </ul>
       </nav>
       <div id="main-container">
         <section id="content">
-          <h2>Formulario Persona</h2>
+          <h2>Formulario Recurso</h2>
 
           <form id="formulario"></form>
-
-          <button onclick="guardarUser()">Guardar Cambios</button>
-          <button onclick="descargarPersonas()">Descargar JSON</button>
         </section>
+
+        <aside id="sidebar">
+          <h3>Opciones</h3>
+          <button onclick="consultarPersona()">Consultar</button>
+          <button onclick="guardarUser()">Guardar</button>
+          <button id="btn-editar" onclick="editarUser()" disabled>Editar</button>
+          <button id="btn-borrar" onclick="borrarUser()" disabled>Borrar</button>
+          <button onclick="descargarPersonas()">Descargar JSON</button>
+          <hr>
+          <label for="archivoJSON">Cargar JSON de recursos:</label>
+          <input type="file" id="archivoJSON" accept="application/json">
+          <button onclick="cargarYGuardarJSON()">Cargar y Guardar en BD</button>
+        </aside>
       </div>
     </div>
 

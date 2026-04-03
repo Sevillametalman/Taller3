@@ -10,10 +10,20 @@ window.addEventListener("DOMContentLoaded", async () => {
     users.forEach((user) => {
       const row = document.createElement("tr");
       row.innerHTML = `
+        <td>${user.id}</td>
+        <td>${user.cedula}</td>
         <td>${user.nombre}</td>
         <td>${user.apellido}</td>
-        <td>${user.cedula}</td>
         <td>${user.edad}</td>
+        <td>${user.genero}</td>
+        <td>${user.telefono1 || ''}</td>
+        <td>${user.telefono2 || ''}</td>
+        <td>${user.correo1 || ''}</td>
+        <td>${user.correo2 || ''}</td>
+        <td>${user.estadocivil}</td>
+        <td>${user.direccion}</td>
+        <td>${user.departamento || ''}</td>
+        <td>${user.cargo || ''}</td>
       `;
       table.appendChild(row);
     });
@@ -46,24 +56,45 @@ async function consultarPorCedula() {
     }
 
     if (Array.isArray(persona)) {
+      console.log(persona)
       persona.sort((a, b) => a.cedula - b.cedula);
       persona.forEach((p) => {
         const row = document.createElement("tr");
         row.innerHTML = `
+          <td>${p.id}</td>
+          <td>${p.cedula}</td>
           <td>${p.nombre}</td>
           <td>${p.apellido}</td>
-          <td>${p.cedula}</td>
           <td>${p.edad}</td>
+          <td>${p.genero}</td>
+          <td>${p.telefono1 || ''}</td>
+          <td>${p.telefono2 || ''}</td>
+          <td>${p.correo1 || ''}</td>
+          <td>${p.correo2 || ''}</td>
+          <td>${p.estadocivil}</td>
+          <td>${p.direccion}</td>
+          <td>${p.departamento || ''}</td>
+          <td>${p.cargo || ''}</td>
         `;
         table.appendChild(row);
       });
     } else {
       const row = document.createElement("tr");
       row.innerHTML = `
+        <td>${persona.id}</td>
+        <td>${persona.cedula}</td>
         <td>${persona.nombre}</td>
         <td>${persona.apellido}</td>
-        <td>${persona.cedula}</td>
         <td>${persona.edad}</td>
+        <td>${persona.genero}</td>
+        <td>${persona.telefono1 || ''}</td>
+        <td>${persona.telefono2 || ''}</td>
+        <td>${persona.correo1 || ''}</td>
+        <td>${persona.correo2 || ''}</td>
+        <td>${persona.estadocivil}</td>
+        <td>${persona.direccion}</td>
+        <td>${persona.departamento || ''}</td>
+        <td>${persona.cargo || ''}</td>
       `;
       table.appendChild(row);
     }

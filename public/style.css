@@ -117,6 +117,17 @@ nav a:hover {
   padding-left: 20px;
 }
 
+#sidebar button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
 /* --- Párrafos y Tipografía --- */
 p {
   /* Requerimiento: Margen, familia, estilo, tamaño, alineación [cite: 16] */
