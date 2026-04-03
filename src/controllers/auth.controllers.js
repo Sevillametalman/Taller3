@@ -4,6 +4,31 @@ import jwt from "jsonwebtoken";
 // En producción, esto DEBE venir de variables de entorno (process.env.JWT_SECRET)
 const SECRET_KEY = "cat";
 
+// Middleware para verificar JWT desde cookie
+function verifyJWT(req, res, next) {
+  const token = req.cookies.auth_token;
+  if (!token) return res.status(401).json({ message: "No autenticado" });
+  try {
+    req.user = jwt.verify(token, SECRET_KEY);
+    next();
+  } catch {
+    return res.status(401).json({ message: "Token inválido o expirado" });
+  }
+}
+
+// Endpoint para saber si el usuario está autenticado
+export const me = [
+  verifyJWT,
+  async (req, res) => {
+    try {
+      // Puedes devolver más datos si quieres
+      res.json({ id: req.user.id });
+    } catch {
+      res.status(500).json({ message: "Error interno" });
+    }
+  },
+];
+
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body;

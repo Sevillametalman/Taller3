@@ -1,8 +1,17 @@
 
-// Redirección automática a login.html si no hay token (excepto en login.html)
-if (!document.cookie.includes('auth_token') && !window.location.pathname.endsWith('login.html')) {
-    window.location.href = 'login.html';
+// Redirección automática a login.html si no está autenticado (excepto en login.html)
+async function checkAuth() {
+    if (window.location.pathname.endsWith('login.html')) return;
+    try {
+        const res = await fetch('/admins/me');
+        if (!res.ok) {
+            window.location.href = 'login.html';
+        }
+    } catch {
+        window.location.href = 'login.html';
+    }
 }
+checkAuth();
 
 // Login (solo si existe el formulario)
 const loginForm = document.getElementById('loginForm');

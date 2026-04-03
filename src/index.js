@@ -4,12 +4,12 @@ import userRoutes from "./routes/users.routes.js";
 import morgan from 'morgan';
 
 import cookieParser from 'cookie-parser';
-import authRoutes from './routes/auth.routes.js'; // <-- Importas las rutas de auth
+import authRoutes from './routes/auth.routes.js';
 
 const app = express();
 
 app.use(morgan('dev'));
-app.use(express.json()); // Necesario para leer JSON en req.body
+app.use(express.json());
 app.use(userRoutes);
 app.use(express.static('public'));
 
