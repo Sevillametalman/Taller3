@@ -14,3 +14,9 @@ CREATE TABLE users(
     departamento VARCHAR(100),
     cargo VARCHAR(100)
 );
+
+CREATE TABLE admins(
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
