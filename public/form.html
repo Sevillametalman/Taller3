@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Taller 2 - JSON</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <h1>Catedral del Milagro</h1>
+      </header>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="tabla_grafico.html">Datos Estadísticos</a></li>
+          <li><a href="form.html">Personajes</a></li>
+        </ul>
+      </nav>
+      <div id="main-container">
+        <section id="content">
+          <h2>Formulario Persona</h2>
+
+          <input
+            type="text"
+            id="buscarCedula"
+            placeholder="Buscar por cédula"
+          />
+          <button onclick="consultarPersona()" class="consultarButton">Consultar</button>
+
+          <form id="formulario"></form>
+
+          <button onclick="guardarUser()">Guardar Cambios</button>
+          <button onclick="descargarPersonas()">Descargar JSON</button>
+        </section>
+      </div>
+    </div>
+
+    <script src="formHandler.js"></script>
+  </body>
+</html>

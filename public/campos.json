@@ -1,0 +1,17 @@
+{
+  "campos": [
+    {"label": "Cédula", "name": "cedula", "type": "text"},
+    {"label": "Nombre", "name": "nombre", "type": "text"},
+    {"label": "Apellido", "name": "apellido", "type": "text"},
+    {"label": "Edad", "name": "edad", "type": "number"},
+    {"label": "Género", "name": "genero", "type": "select", "options": ["masculino", "femenino", "otros"]},
+    {"label": "Teléfono 1", "name": "telefono1", "type": "text"},
+    {"label": "Teléfono 2", "name": "telefono2", "type": "text"},
+    {"label": "Correo 1", "name": "correo1", "type": "email"},
+    {"label": "Correo 2", "name": "correo2", "type": "email"},
+    {"label": "Estado Civil", "name": "estadoCivil", "type": "select", "options": ["soltero", "casado", "divorciado", "concubinato", "viudo"]},
+    {"label": "Dirección", "name": "direccion", "type": "text"},
+    {"label": "Departamento", "name": "departamento", "type": "text"},
+    {"label": "Cargo", "name": "cargo", "type": "text"}
+  ]
+}
