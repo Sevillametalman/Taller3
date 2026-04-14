@@ -174,7 +174,7 @@ export const updateUser = async (req, res) => {
         direccion,
         departamento,
         cargo,
-        cedula
+        cedula,
       ],
     );
 
@@ -185,5 +185,84 @@ export const updateUser = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error al actualizar usuario" });
+  }
+};
+
+export const getAdmins = async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM admins");
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener admins" });
+  }
+};
+
+export const getAdmin = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const { rows } = await pool.query(
+      `SELECT * FROM admins WHERE username = $1`,
+      [username],
+    );
+    if (rows.length === 0) {
+      return res.status(404).json({ error: "Admin no encontrado" });
+    }
+    res.json(rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al buscar admin" });
+  }
+};
+
+export const createAdmin = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      return res.status(400).json({ error: "Faltan campos obligatorios" });
+    }
+    const result = await pool.query(
+      `INSERT INTO admins (username, password) VALUES ($1, $2) RETURNING *`,
+      [username, password],
+    );
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    if (error.code === "23505") {
+      res.status(400).json({ error: "El username ya existe" });
+    } else {
+      res.status(500).json({ error: "Error al guardar admin" });
+    }
+  }
+};
+
+export const deleteAdmin = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const result = await pool.query(`DELETE FROM admins WHERE username = $1`, [
+      username,
+    ]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al borrar admin" });
+  }
+};
+
+export const updateAdmin = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const { password } = req.body;
+    const result = await pool.query(
+      `UPDATE admins SET password = $1 WHERE username = $2 RETURNING *`,
+      [password, username],
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Admin no encontrado" });
+    }
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al actualizar admin" });
   }
 };

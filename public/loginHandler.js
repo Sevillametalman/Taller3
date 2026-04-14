@@ -3,7 +3,7 @@
 async function checkAuth() {
     if (window.location.pathname.endsWith('login.html')) return;
     try {
-        const res = await fetch('/admins/me');
+        const res = await fetch('/administradores/me');
         if (!res.ok) {
             window.location.href = 'login.html';
         }
@@ -23,7 +23,7 @@ if (loginForm) {
         const errorDiv = document.getElementById('loginError');
         errorDiv.style.display = 'none';
         try {
-            const response = await fetch('/admins/login', {
+            const response = await fetch('/administradores/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
@@ -46,6 +46,6 @@ if (loginForm) {
 
 // Función para hacer logout (puedes llamarla desde cualquier botón)
 async function addLogoutToNav() {
-    await fetch('/admins/logout', { method: 'POST' });
+    await fetch('/administradores/logout', { method: 'POST' });
     window.location.href = 'login.html';
 }

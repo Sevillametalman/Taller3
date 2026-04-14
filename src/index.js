@@ -10,11 +10,10 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(cookieParser());
+app.use('/administradores', authRoutes); // Rutas de login/logout
 app.use(userRoutes);
 app.use(express.static('public'));
-
-app.use(cookieParser());
-app.use('/admins', authRoutes); // Rutas de login/logout
 
 app.listen(PORT);
 console.log("Server on port", PORT);
